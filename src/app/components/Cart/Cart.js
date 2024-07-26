@@ -6,7 +6,7 @@ function Cart() {
     const closeCart=()=>{
       setIsOpen(!isOpen)
     }
-    console.log(cart)
+  
   return (
     <div className={isOpen!==false?styles.contain:styles.closeCart}>
       <div className={styles.cartDrawer}>

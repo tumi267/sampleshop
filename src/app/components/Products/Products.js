@@ -9,7 +9,7 @@ function Products({data}) {
     <div >
         <h2>Products</h2>
         <div className={styles.contain}>
-            {data.map((e,i)=>{return<div key={i} className={styles.contain}>
+            {data.map((e,i)=>{return<div key={i} className={styles.containCard}>
               <ColectionCard 
               pic={e.node.images.edges[0].node.src}
               title={e?.node?.title}

@@ -12,7 +12,7 @@ function CollectionContain({data}) {
   return (
     <div className={styles.contain}>
         <div className={styles.cardContain}>
-        {data.map((e,i)=>{return<Link href={`/collection/${e?.node?.handle}`} className={styles.linkText}><div key={i}>
+        {data.map((e,i)=>{return<Link key={i} href={`/collection/${e?.node?.handle}`} className={styles.linkText}><div key={i}>
         <motion.div
         initial={false}
         animate={
