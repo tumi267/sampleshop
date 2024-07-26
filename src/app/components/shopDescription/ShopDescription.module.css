@@ -1,0 +1,19 @@
+.contain{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.textContain,
+.imageContain{
+    height: 500px;
+}
+.textContain{
+    overflow: auto;
+    align-items: start;
+}
+.imageContain{
+    background-color: grey;
+}
+.destext{
+    margin-top: 0%;
+    font-size: 5em;
+}

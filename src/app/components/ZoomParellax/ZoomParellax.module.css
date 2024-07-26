@@ -1,0 +1,74 @@
+.container {
+  height: 300vh;
+  position: relative;
+  width: 100vw;
+  background-color: black;
+  margin-top: 0; /* Ensure no margin on top */
+}
+
+.container .sticky {
+  position: sticky;
+  overflow: hidden;
+  top: 0;
+  height: 100vh;
+}
+
+.imageContainer {
+  position: relative;
+  width: 25vw;
+  height: 25vh;
+}
+
+.container .sticky .el .imageContainer img {
+  
+  object-fit: cover;
+}
+
+.container .sticky .el:nth-of-type(1) .imageContainer {
+  top: 0; /* No margin or top space */
+  left: 10vw;
+  width: 55vw;
+  height: 25vh;
+}
+
+.container .sticky .el:nth-of-type(2) .imageContainer {
+  top: 5vh;
+  left: 10vw;
+  width: 25vw;
+  height: 60vh;
+}
+
+.container .sticky .el:nth-of-type(3) .imageContainer {
+  top: -10vh;
+  left: 40vw;
+  width: 50vw;
+  height: 25vh;
+}
+
+.container .sticky .el:nth-of-type(4) .imageContainer {
+  left: 70vw;
+  top: -120vh;
+  width: 20vw;
+  height: 70vh;
+}
+
+.container .sticky .el:nth-of-type(5) .imageContainer {
+  top: -150vh;
+  left: 40vw;
+  width: 25vw;
+  height: 40vh;
+}
+
+.container .sticky .el:nth-of-type(6) .imageContainer {
+  top: -6vh;
+  left: 45vw;
+  width: 25vw;
+  height: 25vh;
+}
+
+.container .sticky .el:nth-of-type(7) .imageContainer {
+  top: 22.5vh;
+  left: 45vw;
+  width: 25vw;
+  height: 25vh;
+}

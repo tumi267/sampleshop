@@ -1,0 +1,22 @@
+.contain{
+    text-align: center;
+    padding: 2vw;
+   
+}
+.cardContain{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+}
+.imageContain{
+    position: relative;
+    height: 500px;
+    width: 400px;
+    
+}
+.linkText{
+    text-decoration: none;
+    color: black;
+    font-size: larger;
+    font-weight:700;
+}

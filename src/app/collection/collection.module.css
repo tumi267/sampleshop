@@ -1,0 +1,9 @@
+.contain{
+    text-align: center;
+    margin: 0 5%;
+}
+.cardContain{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    
+}

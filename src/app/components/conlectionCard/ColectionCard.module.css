@@ -1,0 +1,30 @@
+.contain{
+width: 300px;
+margin-bottom: 2em;
+}
+.imageContain{
+    position: relative;
+    height: 300px;
+    width: 300px;
+    border-radius: 11%;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.34);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.34);
+}
+.imageContain:hover{
+    height: 300px;
+    width: 300px;
+}
+.cardText_contain{
+    text-align: center;
+}
+.cardtext{
+    color: rgb(29, 29, 29);
+    font-size: 1.5em;
+    font-weight: 800;
+    text-decoration: none;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+}

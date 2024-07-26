@@ -1,0 +1,12 @@
+.contain{
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 2em;
+    align-items: center;
+}
+.navText{
+    text-decoration: none;
+    color: rgb(29, 29, 29);
+    font-size: 15px;
+    font-weight: 800 ;
+}

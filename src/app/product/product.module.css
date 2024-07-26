@@ -1,0 +1,38 @@
+.imageCotainer{
+    display: flex;
+}
+.content_contain{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 2em;
+    color: rgb(29, 29, 29);
+}
+.imageSelector{
+    overflow: scroll;
+    height: 300px;
+}
+.pageContain{
+    text-align: center;
+}
+.pageContain_content{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: 0% 5vw;
+}
+.description{
+    width: 600px;
+}
+.imageCotainer{
+    position: relative;
+    height: 60vh;
+    width: 50vw;
+    border: 1px solid rgb(29, 29, 29);
+}
+.headerText{
+    font-size: 60px;
+}
+.inventory{
+    background-color: rgba(244, 104, 104, 0.454);
+    border-radius: 15%;
+    width: fit-content;
+}
