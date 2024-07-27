@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import styles from './ColectionCard.module.css'
 import AddToCart from "../AddToCart/AddToCart"
-function ColectionCard({pic,price,currency,title,handle,where,param}) {
+function ColectionCard({pic,price,currency,title,handle,where,param,tags}) {
   return (
     <div className={styles.contain}>
         <Link href={`/${where}/${handle}`}>
@@ -21,6 +21,7 @@ function ColectionCard({pic,price,currency,title,handle,where,param}) {
          title={title}
          price={price}
          currencyCode={currency} 
+         tags={tags}
         />
         </div>}
     </div>

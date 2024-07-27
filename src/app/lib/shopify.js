@@ -34,6 +34,7 @@ export async function shopify({ query, variables }) {
               node {
                 id
                 title
+                tags
                 handle
                 availableForSale
                 description
@@ -120,6 +121,7 @@ export async function getCollectiondata(handle){
                 }
               }
               title
+              tags
               handle
             }
           }
@@ -163,9 +165,99 @@ export async function getproductdata(handle){
               }
             }
           }
+          tags
           title
           totalInventory
         }
       }`
+  })
+}
+// related
+export async function getRelated(tags){
+  return shopify({
+    query: `{
+      products(first: 10, query: "tag:${tags}") {
+        edges {
+          node {
+            id
+            title
+            handle
+            images(first: 1) {
+              edges {
+                node {
+                  src
+                  altText
+                }
+              }
+            }
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+      }
+    }`
+  })
+}
+// create cart
+export async function createCart() {
+  return shopify({
+  query: `mutation creatCart {
+    cartCreate {
+      cart {
+        id
+        checkoutUrl
+      }
+    }
+  }`
+  })}
+// get cart
+export async function getCart(checkoutId){
+ 
+  return shopify({
+    query:`{
+      cart(
+        id: "${checkoutId}"
+      ) {
+        id
+        lines(first: 5) {
+          edges {
+            node {
+              id
+              quantity
+              cost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+                subtotalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+        }
+        totalQuantity
+        checkoutUrl
+        estimatedCost {
+          totalTaxAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+          totalAmount {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }`
   })
 }

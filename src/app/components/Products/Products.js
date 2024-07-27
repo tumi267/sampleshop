@@ -17,6 +17,7 @@ function Products({data}) {
               price={e?.node?.priceRange?.minVariantPrice?.amount}
               handle={e?.node?.handle}
               where={'product'}
+              tags={e?.node?.tags}
             />
             </div>})}
         </div>
