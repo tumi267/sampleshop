@@ -44,6 +44,22 @@ export async function shopify({ query, variables }) {
                       currencyCode
                     }
                 }
+                variants(first: 10) {
+                  edges {
+                    node {
+                      id
+                      price {
+                        amount
+                        currencyCode
+                      }
+                      quantityAvailable
+                      title
+                      image {
+                        src
+                      }
+                    }
+                  }
+                }
                 availableForSale
                 images(first: 1) {
                     edges {
@@ -182,6 +198,13 @@ export async function getRelated(tags){
             id
             title
             handle
+            variants(first: 10) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
             images(first: 1) {
               edges {
                 node {
@@ -227,6 +250,24 @@ export async function getCart(checkoutId){
           edges {
             node {
               id
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  image {
+                    src
+                  }
+                  product {
+                    handle
+                    title
+                    tags
+                  }
+                }
+              }
               quantity
               cost {
                 totalAmount {
@@ -256,6 +297,28 @@ export async function getCart(checkoutId){
             amount
             currencyCode
           }
+        }
+      }
+    }`
+  })
+}
+
+// add line item
+export async function addLineItem(checkoutId,variant){
+  
+  return shopify({
+    query:`mutation addLineItem {
+      cartLinesAdd(cartId: "${checkoutId}", lines: {merchandiseId: "${variant}", quantity: 1}) {
+        cart {
+          lines(first: 10) {
+            edges {
+              node{
+                id
+                merchandise
+              }
+            }
+          }
+          totalQuantity
         }
       }
     }`

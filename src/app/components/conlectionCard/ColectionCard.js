@@ -3,12 +3,16 @@ import Image from "next/image"
 import Link from "next/link"
 import styles from './ColectionCard.module.css'
 import AddToCart from "../AddToCart/AddToCart"
-function ColectionCard({pic,price,currency,title,handle,where,param,tags}) {
+function ColectionCard({pic,price,currency,title,handle,where,param,tags,variants}) {
+  
   return (
     <div className={styles.contain}>
         <Link href={`/${where}/${handle}`}>
         <div className={styles.imageContain}>
-        <Image src={pic} alt={title} layout="fill"/>
+        <Image src={pic} 
+        alt={title} 
+        fill={true}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
         </div>
         <div className={styles.cardText_contain}>
         <h3 className={styles.cardtext}>{title}</h3>
@@ -22,6 +26,7 @@ function ColectionCard({pic,price,currency,title,handle,where,param,tags}) {
          price={price}
          currencyCode={currency} 
          tags={tags}
+         variants={variants}
         />
         </div>}
     </div>

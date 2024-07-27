@@ -27,7 +27,9 @@ function CollectionContain({data}) {
       > 
             {e.node?.image?.src&&<Image 
             src={e.node?.image?.src} 
-            alt={e.node?.image?.altText?e?.node?.altText:e?.node?.title} layout="fill"
+            alt={e.node?.image?.altText?e?.node?.altText:e?.node?.title}
+            fill={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             onLoad={() => setIsLoaded(true)}/>}
             </motion.div>
           <p >{e?.node.title}</p> 

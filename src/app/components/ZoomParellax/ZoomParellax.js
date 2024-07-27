@@ -39,8 +39,8 @@ function ZoomParellax({ pics }) {
                                 <div className={styles.imageContainer}>
                                     <Image
                                         src={src}
-                                        layout="fill"
-                                        objectFit="cover"
+                                        fill={true}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         alt={`image-${index}`}
                                     />
                                 </div>

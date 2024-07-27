@@ -4,7 +4,7 @@ import { createContext, useState, useContext } from 'react';
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [checkoutId, setCheckoutId] = useState(null)
   // Add cart-related logic here if needed

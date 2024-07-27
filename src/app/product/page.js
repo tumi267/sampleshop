@@ -4,7 +4,7 @@ import styles from './product.module.css'
 async function page() {
     const products=await getAllProducts()
     const list=products.body.data.products.edges
-    
+  
   return (
     <div className={styles.pageContain}>
         <h1>Products</h1>
@@ -17,6 +17,7 @@ async function page() {
         handle={e.node.handle}
         tags={e.node.tags}
         where={'product'}
+        variants={e.node.variants.edges}
         />
         })}
       </div>

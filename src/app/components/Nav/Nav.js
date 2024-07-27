@@ -17,11 +17,24 @@ function Nav() {
     } else {
       createAndStoreCart();
     }
+    const cartquaity = () =>  {
+      //load cart here
+      // loadCart(cart,setCartItems)
+      // check for cart
+      // if cart setcartdata
+      // context
+    };
+    
+        // Set an interval to call the function every 500ms
+    const intervalId = setInterval(cartquaity, 500);
+
+    // Cleanup function to clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
   },[])
   const createAndStoreCart = async () => {
     try {
       const checkout = await createCart();
-      setCheckoutId(checkout?.body?.data?.cartCreate?.cart.id);
+      // setCheckoutId(checkout?.body?.data?.cartCreate?.cart.id);
       localStorage.setItem(`${shopName}`, checkout?.body?.data?.cartCreate?.cart.id);
       setCart([]);
     } catch (error) {

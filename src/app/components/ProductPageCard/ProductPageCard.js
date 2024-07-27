@@ -10,11 +10,15 @@ function ProductPageCard({images,maxVariantPrice,description,availableForSale,to
         <div className={styles.content_contain}>
           <div className={styles.imageCotainer}>
             {images.edges.length>1&&<div className={styles.imageSelector}>{images.edges.map((e,i)=>{return <div key={i} onClick={()=>{setMainImg(i)}}>
-                <Image src={images.edges[i].node.src} alt={title} height={50} width={50}/>
+                <Image src={images.edges[i].node.src}
+                 alt={title} height={50} width={50}/>
                 </div>})}
             </div>}
             <div className={styles.imageCotainer}>
-            <Image  src={images?.edges[mainImg]?.node.src} alt={title} layout="fill"/>
+            <Image  src={images?.edges[mainImg]?.node.src} 
+            alt={title} 
+            fill={true} 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
             </div>
           </div>
           <div>
