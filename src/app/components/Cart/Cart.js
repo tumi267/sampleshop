@@ -3,12 +3,10 @@ import { useCart } from "@/app/context/context";
 import styles from './Cart.module.css'
 import { useEffect, useState } from "react";
 import ColectionCard from "../conlectionCard/ColectionCard";
-import { loadCart } from "@/app/lib/getCart";
 import CartItemsCard from "./CartItemsCard";
-import { getRelated } from "@/app/lib/shopify";
+import { emptycart, getRelated } from "@/app/lib/shopify";
 function Cart() {
-    const { isOpen, setIsOpen ,cart} = useCart();
-    const [cartItems,setCartItems]=useState([])
+    const { isOpen, setIsOpen ,cart,cartItems,setCartItems} = useCart();
     const [lineItems,setLineItems]=useState([])
     const [relatedProducts,setRelatedProducts]=useState([])
     const [cost,setcost]=useState({
@@ -16,14 +14,12 @@ function Cart() {
       subtotalAmount:{amount:0},
       totalAmount:{amount:0}
     })
+    const shopName=`shopName`
     const closeCart=()=>{
       setIsOpen(!isOpen)
     } 
 
-    useEffect(()=>{
-      loadCart(cart,setCartItems)
-
-    },[isOpen])
+ 
     useEffect(()=>{
     setLineItems(cartItems?.lines?.edges)
     setcost(cartItems?.estimatedCost)
@@ -35,6 +31,20 @@ function Cart() {
     related()
     },[cartItems])
 
+    const clearCart = async () => {
+      try {
+        // Collecting all line IDs from the cart items
+        const lineIds = cartItems.lines.edges.map(e => e.node.id);
+    
+        // Calling emptycart with the list of all line IDs
+        const response = await emptycart(cart, lineIds);
+    
+        console.log('Batch removal response:', response);
+      } catch (error) {
+        console.error('Error during cart clearance:', error);
+      }
+      window.localStorage.setItem(`${shopName}:newitem`,'dirty')
+    };
   return (
     <div className={isOpen!==false?styles.contain:styles.closeCart}>
       <div className={styles.cartDrawer}>
@@ -97,6 +107,8 @@ function Cart() {
               </tr>
             </tbody>
         </table> 
+        <button>check out</button>
+        <p onClick={()=>{clearCart()}}>empty cart</p>
         </div>
       </div>
     </div>

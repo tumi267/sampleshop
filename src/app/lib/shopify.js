@@ -246,7 +246,7 @@ export async function getCart(checkoutId){
         id: "${checkoutId}"
       ) {
         id
-        lines(first: 5) {
+        lines(first: 200) {
           edges {
             node {
               id
@@ -323,4 +323,36 @@ export async function addLineItem(checkoutId,variant){
       }
     }`
   })
+}
+
+// empty cart
+export async function emptycart(cart, lineIds){
+  return shopify({
+  query:`
+  mutation RemoveLines($cartId: ID!, $lineIds: [ID!]!) {
+    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+      cart {
+        id
+        lines(first: 100) {
+          edges {
+            node {
+              id
+              merchandise {
+                ... on ProductVariant {
+                  id
+                  title
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`,
+variables: {
+  cartId: cart,
+  lineIds: lineIds
+}
+});
 }
