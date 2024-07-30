@@ -73,13 +73,12 @@ function Cart() {
             <p onClick={closeCart}>close</p>
           </div>
           <div >
-          {cartItems?.lines?.edges.length > 0?<div>{lineItems?.map((e,i)=>{
+          {cartItems?.lines?.edges.length > 0?<div>{lineItems?.map((e,i)=>{ 
+           
             return <CartItemsCard
             key={i}
-            pic={e?.node?.merchandise?.image?.src}
-            name={e?.node?.merchandise?.product?.title}
-            price={e?.node?.merchandise?.price}
-            qty={e?.node?.quantity}
+            data={e}
+
             />
           })}</div>:<h2>your bag is empty</h2>}
           </div>
