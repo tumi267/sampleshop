@@ -3,8 +3,17 @@ import { useState } from "react"
 import styles from '../../product/product.module.css'
 import Image from "next/image"
 import AddToCart from "../AddToCart/AddToCart"
-function ProductPageCard({images,maxVariantPrice,description,availableForSale,totalInventory,title}) {
+function ProductPageCard({images,maxVariantPrice,description,availableForSale,totalInventory,title,variants}) {
     const [mainImg,setMainImg]=useState(0)
+    const matcheritems = variants.edges[0].node.selectedOptions.map(obj => {
+      let name=obj.name
+      let value=obj.value
+      let item={[name]:value}
+      return item
+    });
+    const mergedObj = Object.assign({}, ...matcheritems);
+    // key value par for objs in selected value
+    console.log(mergedObj)
   return (
     <div>
         <div className={styles.content_contain}>

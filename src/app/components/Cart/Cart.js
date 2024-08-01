@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ColectionCard from "../conlectionCard/ColectionCard";
 import CartItemsCard from "./CartItemsCard";
 import { emptycart, getRelated } from "@/app/lib/shopify";
+import Link from "next/link";
 function Cart() {
     const { isOpen, setIsOpen ,cart,cartItems,setCartItems} = useCart();
     const [lineItems,setLineItems]=useState([])
@@ -106,7 +107,8 @@ function Cart() {
               </tr>
             </tbody>
         </table> 
-        <button>check out</button>
+        <Link href={`${cartItems?.checkoutUrl}`}>check out</Link>
+      
         <p onClick={()=>{clearCart()}}>empty cart</p>
         </div>
       </div>

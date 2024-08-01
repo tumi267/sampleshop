@@ -9,6 +9,7 @@ async function page() {
     <div className={styles.pageContain}>
         <h1>Products</h1>
         <div className={styles.pageContain_content}>
+          {/* send in e as data destucure in card */}
         {list.map((e,i)=>{return <ColectionCard key={i}
         pic={e.node.images.edges[0].node.src}
         price={e?.node?.priceRange?.minVariantPrice?.amount}

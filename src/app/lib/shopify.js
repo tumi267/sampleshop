@@ -153,6 +153,7 @@ export async function getproductdata(handle){
         product(handle: "${handle}") {
           availableForSale
           description
+          
           images(first: 10) {
             edges {
               node {
@@ -171,10 +172,29 @@ export async function getproductdata(handle){
               currencyCode
             }
           }
-          variants(first: 10) {
+          variants(first: 200) {
             edges {
               node {
                 id
+                price {
+                  amount
+                  currencyCode
+                }
+                selectedOptions {
+                  name
+                  value
+                }
+                product {
+                  availableForSale
+                  totalInventory
+                  tags
+                  title
+                  images(first: 10) {
+                    nodes {
+                      src
+                    }
+                  }
+                }
                 image {
                   src
                 }
@@ -246,6 +266,7 @@ export async function getCart(checkoutId){
         id: "${checkoutId}"
       ) {
         id
+        checkoutUrl
         lines(first: 200) {
           edges {
             node {
