@@ -118,9 +118,39 @@ export async function getCollectiondata(handle){
       collection(handle: "${handle}") {
         description
         title
-        products(first: 100) {
+        products(first: 200) {
           edges {
+            
             node {
+              variants(first: 200) {
+                edges {
+                  node {
+                    id
+                    price {
+                      amount
+                      currencyCode
+                    }
+                    selectedOptions {
+                      name
+                      value
+                    }
+                    product {
+                      availableForSale
+                      totalInventory
+                      tags
+                      title
+                      images(first: 10) {
+                        nodes {
+                          src
+                        }
+                      }
+                    }
+                    image {
+                      src
+                    }
+                  }
+                }
+              }
               availableForSale
               priceRange {
                 minVariantPrice {
@@ -153,7 +183,6 @@ export async function getproductdata(handle){
         product(handle: "${handle}") {
           availableForSale
           description
-          
           images(first: 10) {
             edges {
               node {

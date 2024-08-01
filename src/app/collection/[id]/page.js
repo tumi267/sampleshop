@@ -6,6 +6,8 @@ async function page({ params }) {
     const data= await getCollectiondata(handle)
     const {title,products,description}=data.body.data.collection
     const productData=products.edges
+    // get variants set id to variants.id
+
   return (
     <div className={styles.contain}>
         <h2>{title}</h2>
@@ -19,6 +21,7 @@ async function page({ params }) {
         handle={e?.node?.handle}
         where={'product'}
         tags={e?.node?.tags}
+        id={e.node.variants.edges[0].node.id}
         /></div>
       })}
       </div>

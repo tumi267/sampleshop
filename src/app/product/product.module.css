@@ -1,3 +1,4 @@
+.selector,
 .imageCotainer{
     display: flex;
 }
@@ -35,4 +36,9 @@
     background-color: rgba(244, 104, 104, 0.454);
     border-radius: 15%;
     width: fit-content;
+}
+.selector{
+    font-size: 30px;
+    font-weight: 600;
+    gap: 1rem;
 }

@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import styles from './ColectionCard.module.css'
 import AddToCart from "../AddToCart/AddToCart"
-function ColectionCard({pic,price,currency,title,handle,where,param,tags,variants}) {
+function ColectionCard({pic,price,currency,title,handle,where,param,tags,id}) {
   
   return (
     <div className={styles.contain}>
@@ -20,13 +20,14 @@ function ColectionCard({pic,price,currency,title,handle,where,param,tags,variant
         </div>
         </Link>
         {param!==0&&<div className={styles.btn}>
+          
         <AddToCart
          pic={pic}
          title={title}
          price={price}
          currencyCode={currency} 
          tags={tags}
-         variants={variants}
+         id={id}
         />
         </div>}
     </div>

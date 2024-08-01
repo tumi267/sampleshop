@@ -4,7 +4,7 @@ import Link from "next/link"
 import styles from './Products.module.css'
 import ColectionCard from "../conlectionCard/ColectionCard"
 function Products({data}) {
-  //  different call
+  
   return (
     <div >
         <h2>Products</h2>
@@ -18,6 +18,8 @@ function Products({data}) {
               handle={e?.node?.handle}
               where={'product'}
               tags={e?.node?.tags}
+              // first avaiable variant of variant logic
+              id={e.node.variants.edges[0].node.id}
             />
             </div>})}
         </div>
