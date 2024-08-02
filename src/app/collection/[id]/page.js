@@ -21,7 +21,7 @@ async function page({ params }) {
         handle={e?.node?.handle}
         where={'product'}
         tags={e?.node?.tags}
-        id={e.node.variants.edges[0].node.id}
+        variants={e.node.variants}
         /></div>
       })}
       </div>

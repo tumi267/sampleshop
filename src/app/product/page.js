@@ -19,7 +19,7 @@ async function page() {
         tags={e.node.tags}
         where={'product'}
         // variant selector logic of first avaible variant
-        id={e.node.variants.edges[0].node.id}
+        variants={e.node.variants}
         />
         })}
       </div>

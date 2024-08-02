@@ -6,7 +6,7 @@ async function page({params}) {
     const data=await getproductdata(handle)
     const{availableForSale,description,images,priceRange,variants,title,totalInventory,tags}=data.body.data.product
     const {maxVariantPrice,minVariantPrice}=priceRange
-    console.log(variants)
+ 
   return (
     <div>
         <ProductPageCard

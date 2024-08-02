@@ -44,7 +44,7 @@ export async function shopify({ query, variables }) {
                       currencyCode
                     }
                 }
-                variants(first: 10) {
+                variants(first: 200) {
                   edges {
                     node {
                       id
@@ -52,8 +52,21 @@ export async function shopify({ query, variables }) {
                         amount
                         currencyCode
                       }
-                      quantityAvailable
-                      title
+                      selectedOptions {
+                        name
+                        value
+                      }
+                      product {
+                        availableForSale
+                        totalInventory
+                        tags
+                        title
+                        images(first: 10) {
+                          nodes {
+                            src
+                          }
+                        }
+                      }
                       image {
                         src
                       }
@@ -247,10 +260,32 @@ export async function getRelated(tags){
             id
             title
             handle
-            variants(first: 10) {
+            variants(first: 5) {
               edges {
                 node {
                   id
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  selectedOptions {
+                    name
+                    value
+                  }
+                  product {
+                    availableForSale
+                    totalInventory
+                    tags
+                    title
+                    images(first: 10) {
+                      nodes {
+                        src
+                      }
+                    }
+                  }
+                  image {
+                    src
+                  }
                 }
               }
             }

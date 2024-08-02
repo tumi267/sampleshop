@@ -3,46 +3,12 @@ import { useState } from "react"
 import styles from '../../product/product.module.css'
 import Image from "next/image"
 import AddToCart from "../AddToCart/AddToCart"
+import { handleseletor, variantselect } from "@/app/lib/variants"
 function ProductPageCard({images,description,totalInventory,variants}) {
     const [mainImg,setMainImg]=useState(0)
-
-    const values = variants.edges.flatMap(e => e.node.selectedOptions);
-    const uniqueOptions = new Set();
-  // Flatten and deduplicate variant options
-    const flattened = values.reduce((acc, { name, value }) => {
-      const key = `${name}-${value}`;
-      if (!uniqueOptions.has(key)) {
-        uniqueOptions.add(key);
-        if (!acc[name]) {
-          acc[name] = [];
-        }
-        acc[name].push(value);
-      }
-      return acc;
-    }, {});
-    const keys = Object.keys(flattened);
-    // set fir available variant
-    const availableVariants = variants.edges.find(e =>e.node.product.availableForSale==true
-    );
-    const [variantSelected,setVariantSeleted]=useState(availableVariants.node)
+    const options=variantselect(variants)
+    const [variantSelected,setVariantSeleted]=useState(options.availableVariants.node)
     const {product,id,image,price,selectedOptions}=variantSelected
-    // handles click selection update
-    const handleseletor=(key,value)=>{
-      const newOptions=selectedOptions.map(e=>e.name==key?{...e,value}:e)
-    // Define a function to check if the variant's selectedOptions match newOptions
-    const matchesSelectedOptions = (variantOptions) => {
-      return variantOptions.length === newOptions.length &&
-        variantOptions.every(option =>
-        newOptions.some(newOption => 
-        newOption.name === option.name && newOption.value === option.value
-      )
-    );
-    };
-      const newVariants = variants.edges.filter(e => 
-      matchesSelectedOptions(e.node.selectedOptions)
-    );
-    setVariantSeleted(newVariants[0].node);
-    }
     
   return (
     <div>
@@ -65,12 +31,12 @@ function ProductPageCard({images,description,totalInventory,variants}) {
           <h3 className={styles.headerText}>{price.currencyCode} {price.amount}</h3>
           <div>
          
-          {keys.map((e,i) => {
+          {options.keys.map((e,i) => {
             return<div key={i}>
               <h3>{e}</h3>
               <div className={styles.selector}>
-              {flattened[e].map((j,y)=>{
-               return <div key={y} onClick={()=>{handleseletor(e,j)}}>{j}</div>
+              {options.flattened[e].map((j,y)=>{
+               return <div key={y} onClick={()=>{handleseletor(setVariantSeleted,selectedOptions,j,e,variants)}}>{j}</div>
               })}
               </div>
             </div>

@@ -20,7 +20,6 @@ function Cart() {
       setIsOpen(!isOpen)
     } 
 
- 
     useEffect(()=>{
     setLineItems(cartItems?.lines?.edges)
     setcost(cartItems?.estimatedCost)
@@ -63,7 +62,7 @@ function Cart() {
               price={e?.node?.priceRange?.minVariantPrice?.amount}
               handle={e?.node?.handle}
               tags={e?.node?.tags}
-              variants={e.node.variants.edges}
+              variants={e.node.variants}
               />
             })}          
           </div>
