@@ -26,289 +26,289 @@ export async function shopify({ query, variables }) {
     }
   }
 // all products
-  export async function getAllProducts() {
-    return shopify({
-      query: `{
-          products(sortKey: TITLE, first: 100) {
-            edges{
-              node {
-                id
-                title
-                tags
-                handle
-                availableForSale
-                description
-                priceRange {
-                    minVariantPrice {
-                      amount
-                      currencyCode
-                    }
-                }
-                variants(first: 200) {
-                  edges {
-                    node {
-                      id
-                      price {
-                        amount
-                        currencyCode
-                      }
-                      selectedOptions {
-                        name
-                        value
-                      }
-                      product {
-                        availableForSale
-                        totalInventory
-                        tags
-                        title
-                        images(first: 10) {
-                          nodes {
-                            src
-                          }
-                        }
-                      }
-                      image {
-                        src
-                      }
-                    }
-                  }
-                }
-                availableForSale
-                images(first: 1) {
-                    edges {
-                      node {
-                        src
-                        altText
-                      }
-                    }
-                }
-              }
-            }
-          }
-        }`
-    });
-  }
+  // export async function getAllProducts() {
+  //   return shopify({
+  //     query: `{
+  //         products(sortKey: TITLE, first: 100) {
+  //           edges{
+  //             node {
+  //               id
+  //               title
+  //               tags
+  //               handle
+  //               availableForSale
+  //               description
+  //               priceRange {
+  //                   minVariantPrice {
+  //                     amount
+  //                     currencyCode
+  //                   }
+  //               }
+  //               variants(first: 200) {
+  //                 edges {
+  //                   node {
+  //                     id
+  //                     price {
+  //                       amount
+  //                       currencyCode
+  //                     }
+  //                     selectedOptions {
+  //                       name
+  //                       value
+  //                     }
+  //                     product {
+  //                       availableForSale
+  //                       totalInventory
+  //                       tags
+  //                       title
+  //                       images(first: 10) {
+  //                         nodes {
+  //                           src
+  //                         }
+  //                       }
+  //                     }
+  //                     image {
+  //                       src
+  //                     }
+  //                   }
+  //                 }
+  //               }
+  //               availableForSale
+  //               images(first: 1) {
+  //                   edges {
+  //                     node {
+  //                       src
+  //                       altText
+  //                     }
+  //                   }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }`
+  //   });
+  // }
   // collections
-export async function getCollections(){
-    return shopify({
-        query:`{
-            collections(first: 100) {
-              edges {
-                node {
-                  id
-                  title
-                  description
-                  handle
-                  image {
-                    src
-                    altText
-                  }
-                }
-              }
-            }
-          }`
-    })
-}
+// export async function getCollections(){
+//     return shopify({
+//         query:`{
+//             collections(first: 100) {
+//               edges {
+//                 node {
+//                   id
+//                   title
+//                   description
+//                   handle
+//                   image {
+//                     src
+//                     altText
+//                   }
+//                 }
+//               }
+//             }
+//           }`
+//     })
+// }
 // shop
-export async function getshopdata(){
-    return shopify({
-        query:`{
-            shop {
-              name
-              description
-              brand {
-                slogan
-                shortDescription
-              }
-            }
-          }`
-    })
-}
+// export async function getshopdata(){
+//     return shopify({
+//         query:`{
+//             shop {
+//               name
+//               description
+//               brand {
+//                 slogan
+//                 shortDescription
+//               }
+//             }
+//           }`
+//     })
+// }
 // collection
-export async function getCollectiondata(handle){
-  return shopify({
-    query:`{
-      collection(handle: "${handle}") {
-        description
-        title
-        products(first: 200) {
-          edges {
+// export async function getCollectiondata(handle){
+//   return shopify({
+//     query:`{
+//       collection(handle: "${handle}") {
+//         description
+//         title
+//         products(first: 200) {
+//           edges {
             
-            node {
-              variants(first: 200) {
-                edges {
-                  node {
-                    id
-                    price {
-                      amount
-                      currencyCode
-                    }
-                    selectedOptions {
-                      name
-                      value
-                    }
-                    product {
-                      availableForSale
-                      totalInventory
-                      tags
-                      title
-                      images(first: 10) {
-                        nodes {
-                          src
-                        }
-                      }
-                    }
-                    image {
-                      src
-                    }
-                  }
-                }
-              }
-              availableForSale
-              priceRange {
-                minVariantPrice {
-                  amount
-                  currencyCode
-                }
-              }
-              images(first: 1) {
-                edges {
-                  node {
-                    id
-                    src
-                  }
-                }
-              }
-              title
-              tags
-              handle
-            }
-          }
-        }
-      }
-    }`
-  })
-}
+//             node {
+//               variants(first: 200) {
+//                 edges {
+//                   node {
+//                     id
+//                     price {
+//                       amount
+//                       currencyCode
+//                     }
+//                     selectedOptions {
+//                       name
+//                       value
+//                     }
+//                     product {
+//                       availableForSale
+//                       totalInventory
+//                       tags
+//                       title
+//                       images(first: 10) {
+//                         nodes {
+//                           src
+//                         }
+//                       }
+//                     }
+//                     image {
+//                       src
+//                     }
+//                   }
+//                 }
+//               }
+//               availableForSale
+//               priceRange {
+//                 minVariantPrice {
+//                   amount
+//                   currencyCode
+//                 }
+//               }
+//               images(first: 1) {
+//                 edges {
+//                   node {
+//                     id
+//                     src
+//                   }
+//                 }
+//               }
+//               title
+//               tags
+//               handle
+//             }
+//           }
+//         }
+//       }
+//     }`
+//   })
+// }
 // product
-export async function getproductdata(handle){
-  return shopify({
-      query:`{
-        product(handle: "${handle}") {
-          availableForSale
-          description
-          images(first: 10) {
-            edges {
-              node {
-                id
-                src
-              }
-            }
-          }
-          priceRange {
-            maxVariantPrice {
-              currencyCode
-              amount
-            }
-            minVariantPrice {
-              amount
-              currencyCode
-            }
-          }
-          variants(first: 200) {
-            edges {
-              node {
-                id
-                price {
-                  amount
-                  currencyCode
-                }
-                selectedOptions {
-                  name
-                  value
-                }
-                product {
-                  availableForSale
-                  totalInventory
-                  tags
-                  title
-                  images(first: 10) {
-                    nodes {
-                      src
-                    }
-                  }
-                }
-                image {
-                  src
-                }
-              }
-            }
-          }
-          tags
-          title
-          totalInventory
-        }
-      }`
-  })
-}
+// export async function getproductdata(handle){
+//   return shopify({
+//       query:`{
+//         product(handle: "${handle}") {
+//           availableForSale
+//           description
+//           images(first: 10) {
+//             edges {
+//               node {
+//                 id
+//                 src
+//               }
+//             }
+//           }
+//           priceRange {
+//             maxVariantPrice {
+//               currencyCode
+//               amount
+//             }
+//             minVariantPrice {
+//               amount
+//               currencyCode
+//             }
+//           }
+//           variants(first: 200) {
+//             edges {
+//               node {
+//                 id
+//                 price {
+//                   amount
+//                   currencyCode
+//                 }
+//                 selectedOptions {
+//                   name
+//                   value
+//                 }
+//                 product {
+//                   availableForSale
+//                   totalInventory
+//                   tags
+//                   title
+//                   images(first: 10) {
+//                     nodes {
+//                       src
+//                     }
+//                   }
+//                 }
+//                 image {
+//                   src
+//                 }
+//               }
+//             }
+//           }
+//           tags
+//           title
+//           totalInventory
+//         }
+//       }`
+//   })
+// }
 // related
-export async function getRelated(tags){
-  return shopify({
-    query: `{
-      products(first: 10, query: "tag:${tags}") {
-        edges {
-          node {
-            id
-            title
-            handle
-            variants(first: 5) {
-              edges {
-                node {
-                  id
-                  price {
-                    amount
-                    currencyCode
-                  }
-                  selectedOptions {
-                    name
-                    value
-                  }
-                  product {
-                    availableForSale
-                    totalInventory
-                    tags
-                    title
-                    images(first: 10) {
-                      nodes {
-                        src
-                      }
-                    }
-                  }
-                  image {
-                    src
-                  }
-                }
-              }
-            }
-            images(first: 1) {
-              edges {
-                node {
-                  src
-                  altText
-                }
-              }
-            }
-            priceRange {
-              minVariantPrice {
-                amount
-                currencyCode
-              }
-            }
-          }
-        }
-      }
-    }`
-  })
-}
+// export async function getRelated(tags){
+//   return shopify({
+//     query: `{
+//       products(first: 10, query: "tag:${tags}") {
+//         edges {
+//           node {
+//             id
+//             title
+//             handle
+//             variants(first: 5) {
+//               edges {
+//                 node {
+//                   id
+//                   price {
+//                     amount
+//                     currencyCode
+//                   }
+//                   selectedOptions {
+//                     name
+//                     value
+//                   }
+//                   product {
+//                     availableForSale
+//                     totalInventory
+//                     tags
+//                     title
+//                     images(first: 10) {
+//                       nodes {
+//                         src
+//                       }
+//                     }
+//                   }
+//                   image {
+//                     src
+//                   }
+//                 }
+//               }
+//             }
+//             images(first: 1) {
+//               edges {
+//                 node {
+//                   src
+//                   altText
+//                 }
+//               }
+//             }
+//             priceRange {
+//               minVariantPrice {
+//                 amount
+//                 currencyCode
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }`
+//   })
+// }
 // create cart
 export async function createCart() {
   return shopify({
@@ -413,34 +413,34 @@ export async function addLineItem(checkoutId,variant){
 
 // empty cart
 export async function emptycart(cart, lineIds){
-  return shopify({
-  query:`
-  mutation RemoveLines($cartId: ID!, $lineIds: [ID!]!) {
-    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
-      cart {
-        id
-        lines(first: 100) {
-          edges {
-            node {
-              id
-              merchandise {
-                ... on ProductVariant {
-                  id
-                  title
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`,
-variables: {
-  cartId: cart,
-  lineIds: lineIds
-}
-});
+//   return shopify({
+//   query:`
+//   mutation RemoveLines($cartId: ID!, $lineIds: [ID!]!) {
+//     cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+//       cart {
+//         id
+//         lines(first: 100) {
+//           edges {
+//             node {
+//               id
+//               merchandise {
+//                 ... on ProductVariant {
+//                   id
+//                   title
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `,
+// variables: {
+//   cartId: cart,
+//   lineIds: lineIds
+// }
+// });
 }
 //update cart line item
 export async function updateCartItem(cart, item, qty) {

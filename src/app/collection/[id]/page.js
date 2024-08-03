@@ -3,9 +3,19 @@ import { getCollectiondata } from "@/app/lib/shopify"
 import styles from '../collection.module.css'
 async function page({ params }) {
     const handle=params.id
-    const data= await getCollectiondata(handle)
-    const {title,products,description}=data.body.data.collection
+    const baseUrl = 'http://localhost:3000';
+    const data= await fetch(`${baseUrl}/api/getCollectiondata`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({handle:handle}) ,
+      cache: 'no-store' 
+    });
+    const res=await data.json()
+    const {title,products,description}=res.msg
     const productData=products.edges
+   
     // get variants set id to variants.id
 
   return (

@@ -1,9 +1,11 @@
 import ColectionCard from "../components/conlectionCard/ColectionCard"
-import { getCollections } from "../lib/shopify"
+
 import styles from './collection.module.css'
 async function page() {
-    const collections=await getCollections()    
-    const list=collections.body.data.collections.edges
+    const baseUrl = 'http://localhost:3000';
+    const collectioData=await fetch(`${baseUrl}/api/getCollections`, { cache: 'no-store' })
+    const collections=await collectioData.json() 
+    const list=collections.msg.edges
     const dumie={edges:[{node:{
       selectedOptions:[],
       product:{
@@ -13,7 +15,7 @@ async function page() {
     }
   }
 ]}
-    console.log(list[0].node)
+
   return (
     <div className={styles.contain}>
         <h2>Collections</h2>

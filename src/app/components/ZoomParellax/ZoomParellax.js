@@ -18,6 +18,7 @@ function ZoomParellax({ pics }) {
     const scale5 = useTransform(scrollYProgress, [0, 1], [1, 9]);
     const scales = [scale1, scale2, scale3, scale4, scale5];
 
+   
     const pictures = pics.map((e, i) => {
         const image = e?.node?.image?.src;
         return { src: image, scale: scales[i] };

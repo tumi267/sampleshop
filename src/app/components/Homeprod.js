@@ -1,4 +1,4 @@
-import { getAllProducts, getCollections, getshopdata } from "../lib/shopify"
+
 import Intro from "./Intro/Intro"
 import Products from "./Products/Products"
 import CollectionContain from "./CollectionContain/CollectionContain"
@@ -6,26 +6,31 @@ import ZoomParellax from "./ZoomParellax/ZoomParellax"
 import ShopDescription from "./shopDescription/ShopDescription"
 
 async function Homeprod() {
-  const shopdata=await getshopdata()
-  const shop=shopdata?.body?.data.shop
-  const productsData=await getAllProducts()
-  const products=productsData?.body?.data?.products?.edges
-  const collectiondata=await getCollections()
-  const collections=collectiondata?.body?.data.collections?.edges
+  const baseUrl = 'http://localhost:3000';
+
+  const shopdata=await fetch(`${baseUrl}/api/getshopdata`, { cache: 'no-store' })
+  const res=await shopdata.json()
+
+  const productsData=await fetch(`${baseUrl}/api/getAllProducts`, { cache: 'no-store' })
+  const res1=await productsData.json()
+  const {products}=res1.msg
+
+  const collectioData=await fetch(`${baseUrl}/api/getCollections`, { cache: 'no-store' })
+  const res2=await collectioData.json()
 
   return (
     <div>
 
       <ZoomParellax
-      pics={collections}/>
+      pics={res2.msg.edges}/>
       <Intro
-      data={shop}/>
-      <CollectionContain
-      data={collections}/>
+      data={res.msg}/> 
+     <CollectionContain
+      data={res2.msg.edges}/>
       <ShopDescription
-      data={shop}/>
+      data={res.msg}/>
       <Products
-      data={products}/>
+      data={products?.edges}/> 
     </div>
   )
 }

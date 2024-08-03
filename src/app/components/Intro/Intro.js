@@ -1,6 +1,7 @@
 import styles from './Intro.module.css'
 
 function Intro({data}) {
+  
   return (
     <div>
     {/* <h1>{data?.name}</h1>

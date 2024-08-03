@@ -10,6 +10,7 @@ function Cart() {
     const { isOpen, setIsOpen ,cart,cartItems,setCartItems} = useCart();
     const [lineItems,setLineItems]=useState([])
     const [relatedProducts,setRelatedProducts]=useState([])
+    const baseUrl = 'http://localhost:3000';
     const [cost,setcost]=useState({
       totalTaxAmount:{amount:0},
       subtotalAmount:{amount:0},
@@ -25,8 +26,17 @@ function Cart() {
     setcost(cartItems?.estimatedCost)
     const related=async ()=>{
     const randomizeditem=Math.floor(Math.random() * cartItems?.lines?.edges?.length)
-    const relatedproducts=await getRelated(cartItems?.lines?.edges[randomizeditem]?.node?.merchandise?.product?.tags)
-    setRelatedProducts(relatedproducts.body.data.products.edges)
+    const relateddata= await fetch(`${baseUrl}/api/getRelated`,{
+      method:'POST',
+      headers:{'Content-Type': 'application/json'},
+      body: JSON.stringify({handle:cartItems?.lines?.edges[randomizeditem]?.node?.merchandise?.product?.tags}) ,
+      cache: 'no-store' 
+    })
+    const res=await relateddata.json()
+    if(res.msg){
+      setRelatedProducts(res.msg)
+    }
+
     }
     related()
     },[cartItems])
@@ -35,11 +45,18 @@ function Cart() {
       try {
         // Collecting all line IDs from the cart items
         const lineIds = cartItems.lines.edges.map(e => e.node.id);
-    
+        const data= await fetch(`${baseUrl}/api/emptycart`,{
+          method:'POST',
+          headers:{
+            'Content-Type': 'application/json'
+          },
+          body:JSON.stringify({cart:cart,lines:lineIds}),
+          cache:'no-store'
+        })
         // Calling emptycart with the list of all line IDs
-        const response = await emptycart(cart, lineIds);
+        // const response = await emptycart(cart, lineIds);
     
-        console.log('Batch removal response:', response);
+        console.log('Batch removal response:', await data.json());
       } catch (error) {
         console.error('Error during cart clearance:', error);
       }
@@ -55,6 +72,7 @@ function Cart() {
           <div>
             {relatedProducts.map((e,i)=>{
               return <ColectionCard 
+              // display name
               key={i}
               pic={e.node.images.edges[0].node.src}
               title={e?.node?.title}
