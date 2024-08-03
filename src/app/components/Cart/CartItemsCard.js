@@ -26,8 +26,9 @@ function CartItemsCard({ data }) {
       case 1: // Increment quantity
     // need a case where qty is not tracked
         setQtyAmount(prevQty => {
+          if (!merchandise.quantityAvailable && merchandise.quantityAvailable !== 0) return prevQty + 1; // No inventory tracking
           const maxQty = merchandise.quantityAvailable; // Get max available quantity
-          return Math.min(prevQty + 1, maxQty); // Ensure quantity doesn't exceed max available
+          return Math.min(prevQty + 1, maxQty);
         });
         break;
       case 2: // Update cart item
