@@ -412,7 +412,7 @@ export async function addLineItem(checkoutId,variant){
 }
 
 // empty cart
-export async function emptycart(cart, lineIds){
+// export async function emptycart(cart, lineIds){
 //   return shopify({
 //   query:`
 //   mutation RemoveLines($cartId: ID!, $lineIds: [ID!]!) {
@@ -441,115 +441,115 @@ export async function emptycart(cart, lineIds){
 //   lineIds: lineIds
 // }
 // });
-}
+// }
 //update cart line item
-export async function updateCartItem(cart, item, qty) {
-  return shopify({
-    query: `
-      mutation updateCartLineItem($cartId: ID!, $lineId: ID!, $quantity: Int!) {
-        cartLinesUpdate(
-          cartId: $cartId,
-          lines: {
-            id: $lineId,
-            quantity: $quantity
-          }
-        ) {
-          cart {
-            id
-            lines(first: 10) {
-              edges {
-                node {
-                  id
-                  quantity
-                  merchandise {
-                    ... on ProductVariant {
-                      id
-                    }
-                  }
-                }
-              }
-            }
-            cost {
-              totalAmount {
-                amount
-                currencyCode
-              }
-              subtotalAmount {
-                amount
-                currencyCode
-              }
-              totalTaxAmount {
-                amount
-                currencyCode
-              }
-              totalDutyAmount {
-                amount
-                currencyCode
-              }
-            }
-          }
-        }
-      }
-    `,
-    variables: {
-      cartId: cart,
-      lineId: item,
-      quantity: qty
-    }
-  });
-}
+// export async function updateCartItem(cart, item, qty) {
+  // return shopify({
+  //   query: `
+  //     mutation updateCartLineItem($cartId: ID!, $lineId: ID!, $quantity: Int!) {
+  //       cartLinesUpdate(
+  //         cartId: $cartId,
+  //         lines: {
+  //           id: $lineId,
+  //           quantity: $quantity
+  //         }
+  //       ) {
+  //         cart {
+  //           id
+  //           lines(first: 10) {
+  //             edges {
+  //               node {
+  //                 id
+  //                 quantity
+  //                 merchandise {
+  //                   ... on ProductVariant {
+  //                     id
+  //                   }
+  //                 }
+  //               }
+  //             }
+  //           }
+  //           cost {
+  //             totalAmount {
+  //               amount
+  //               currencyCode
+  //             }
+  //             subtotalAmount {
+  //               amount
+  //               currencyCode
+  //             }
+  //             totalTaxAmount {
+  //               amount
+  //               currencyCode
+  //             }
+  //             totalDutyAmount {
+  //               amount
+  //               currencyCode
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   `,
+  //   variables: {
+  //     cartId: cart,
+  //     lineId: item,
+  //     quantity: qty
+  //   }
+  // });
+// }
 //remove cart item
-export async function removeCartLineItems(cartId, lineIds) {
+// export async function removeCartLineItems(cartId, lineIds) {
  
-    return shopify({
-      query: `
-        mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
-          cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
-            cart {
-              id
-              lines(first: 10) {
-                edges {
-                  node {
-                    id
-                    quantity
-                    merchandise {
-                      ... on ProductVariant {
-                        id
-                        title
-                      }
-                    }
-                  }
-                }
-              }
-              cost {
-                totalAmount {
-                  amount
-                  currencyCode
-                }
-                subtotalAmount {
-                  amount
-                  currencyCode
-                }
-                totalTaxAmount {
-                  amount
-                  currencyCode
-                }
-                totalDutyAmount {
-                  amount
-                  currencyCode
-                }
-              }
-            }
-            userErrors {
-              field
-              message
-            }
-          }
-        }
-      `,
-      variables: {
-        cartId,
-        lineIds
-      }
-    });
-}
+//     return shopify({
+//       query: `
+//         mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+//           cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+//             cart {
+//               id
+//               lines(first: 10) {
+//                 edges {
+//                   node {
+//                     id
+//                     quantity
+//                     merchandise {
+//                       ... on ProductVariant {
+//                         id
+//                         title
+//                       }
+//                     }
+//                   }
+//                 }
+//               }
+//               cost {
+//                 totalAmount {
+//                   amount
+//                   currencyCode
+//                 }
+//                 subtotalAmount {
+//                   amount
+//                   currencyCode
+//                 }
+//                 totalTaxAmount {
+//                   amount
+//                   currencyCode
+//                 }
+//                 totalDutyAmount {
+//                   amount
+//                   currencyCode
+//                 }
+//               }
+//             }
+//             userErrors {
+//               field
+//               message
+//             }
+//           }
+//         }
+//       `,
+//       variables: {
+//         cartId,
+//         lineIds
+//       }
+//     });
+// }

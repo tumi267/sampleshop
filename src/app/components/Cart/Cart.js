@@ -53,10 +53,6 @@ function Cart() {
           body:JSON.stringify({cart:cart,lines:lineIds}),
           cache:'no-store'
         })
-        // Calling emptycart with the list of all line IDs
-        // const response = await emptycart(cart, lineIds);
-    
-        console.log('Batch removal response:', await data.json());
       } catch (error) {
         console.error('Error during cart clearance:', error);
       }

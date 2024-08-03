@@ -15,7 +15,8 @@ function CartItemsCard({ data }) {
 
   // Initialize state for quantity
   const [qtyAmount, setQtyAmount] = useState(quantity);
-
+  // base url
+  const baseUrl = 'http://localhost:3000';
   // Function to update quantity based on action type
   const updateQty = async (input) => {
     switch (input) {
@@ -23,21 +24,36 @@ function CartItemsCard({ data }) {
         setQtyAmount(prevQty => Math.max(prevQty - 1, 1)); // Ensure quantity doesn't go below 1
         break;
       case 1: // Increment quantity
+    // need a case where qty is not tracked
         setQtyAmount(prevQty => {
           const maxQty = merchandise.quantityAvailable; // Get max available quantity
           return Math.min(prevQty + 1, maxQty); // Ensure quantity doesn't exceed max available
         });
         break;
       case 2: // Update cart item
-        const result = await updateCartItem(cart, id, qtyAmount);
+        // const result = await updateCartItem(cart, id, qtyAmount);
         
-        if (result.body.data) {
+        const data= await fetch(`${baseUrl}/api/updateCartItem`,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({cart:cart,id:id,qtyAmount:qtyAmount}),
+          cache:'no-store'
+        })
+        const res=await data.json()
+
+        if (res.msg) {
           window.localStorage.setItem(`${shopName}:newitem`, 'dirty'); // Mark as 'dirty'
         }
         break;
       case 3://remove cart item
-        const remove=await removeCartLineItems(cart,id)
-        if(remove.body){
+        // const remove=await removeCartLineItems(cart,id)
+        const remove= await fetch(`${baseUrl}/api/removeCartLineItems`,{
+          method:'POST',
+          headers:{'Content-Type':'Application/json'},
+          body:JSON.stringify({cart:cart,id:id})
+        })
+        const res1=await remove.json()
+        if(res1.msg){
           window.localStorage.setItem(`${shopName}:newitem`, 'dirty'); // Mark as 'dirty'
         }
         break;
@@ -50,6 +66,7 @@ function CartItemsCard({ data }) {
   // Handle input change for quantity
   const handleInputChange = (e) => {
     const value = parseInt(e.target.value, 10);
+  
     const available = merchandise.quantityAvailable; // Get available quantity
     setQtyAmount(value > available ? available : value); // Set quantity ensuring it doesn't exceed available
   };
