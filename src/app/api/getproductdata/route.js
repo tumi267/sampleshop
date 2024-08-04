@@ -61,6 +61,9 @@ export async function POST(request)  {
           }
         }`
     })
-    
-    return NextResponse.json({msg:data.body.data.product},{status:200})
+    if(data.body.data){
+      return NextResponse.json({msg:data.body.data.product},{status:200})
+    }else{
+      return NextResponse.json({msg:'something went wrong'},{status:400})
+    }
 }

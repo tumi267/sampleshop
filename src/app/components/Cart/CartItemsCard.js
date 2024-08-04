@@ -9,7 +9,11 @@ import { removeCartLineItems, updateCartItem } from "@/app/lib/shopify";
 function CartItemsCard({ data }) {
   // Extract necessary properties from context and props
   const { cart } = useCart();
-  const shopName = 'shopName'; // Replace with actual shop name or value if dynamic
+  const shopName=async()=>{
+    const shopdata=await fetch('/api/getshopdata',{cache:'no-store'})
+    const res=await shopdata.json()
+    return res?.msg?.name
+  } // Replace with actual shop name or value if dynamic
   const { id, merchandise, quantity } = data.node;
   const { image, product, price } = merchandise;
 
@@ -46,7 +50,7 @@ function CartItemsCard({ data }) {
         const res=await data.json()
 
         if (res.msg) {
-          window.localStorage.setItem(`${shopName}:newitem`, 'dirty'); // Mark as 'dirty'
+          window.localStorage.setItem(`${await shopName()}:newitem`, 'dirty'); // Mark as 'dirty'
         }
         break;
       case 3://remove cart item
@@ -58,7 +62,7 @@ function CartItemsCard({ data }) {
         })
         const res1=await remove.json()
         if(res1.msg){
-          window.localStorage.setItem(`${shopName}:newitem`, 'dirty'); // Mark as 'dirty'
+          window.localStorage.setItem(`${await shopName()}:newitem`, 'dirty'); // Mark as 'dirty'
         }
         break;
       default:

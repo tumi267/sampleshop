@@ -17,7 +17,7 @@ async function Homeprod() {
 
   const collectioData=await fetch(`${baseUrl}/api/getCollections`, { cache: 'no-store' })
   const res2=await collectioData.json()
-
+  const text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id nisi erat. Suspendisse congue viverra maximus. Cras mollis enim urna, fermentum convallis ante aliquam ut. Morbi arcu ex, tristique nec mollis in, iaculis in ipsum. Nulla facilisi. In urna tortor, pretium sed tempor in, tristique nec purus. Suspendisse tellus ligula, sollicitudin sed commodo gravida, maximus quis felis. Suspendisse scelerisque massa eu tellus euismod, id euismod sapien dictum. Vivamus nulla erat, egestas non justo vitae, faucibus consequat felis."
   return (
     <div>
 

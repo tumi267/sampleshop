@@ -36,7 +36,7 @@ function ProductPageCard({images,description,totalInventory,variants}) {
               <h3>{e}</h3>
               <div className={styles.selector}>
               {options.flattened[e].map((j,y)=>{
-               return <div key={y} onClick={()=>{handleseletor(setVariantSeleted,selectedOptions,j,e,variants)}}>{j}</div>
+               return <div key={y} onClick={()=>{handleseletor(setVariantSeleted,selectedOptions,j,e,variants)}}>{j!=='Default Title'&&j}</div>
               })}
               </div>
             </div>

@@ -16,7 +16,11 @@ function Cart() {
       subtotalAmount:{amount:0},
       totalAmount:{amount:0}
     })
-    const shopName=`shopName`
+    const shopName=async()=>{
+      const shopdata=await fetch('/api/getshopdata',{cache:'no-store'})
+      const res=await shopdata.json()
+      return res?.msg?.name
+    }
     const closeCart=()=>{
       setIsOpen(!isOpen)
     } 
@@ -56,7 +60,7 @@ function Cart() {
       } catch (error) {
         console.error('Error during cart clearance:', error);
       }
-      window.localStorage.setItem(`${shopName}:newitem`,'dirty')
+      window.localStorage.setItem(`${await shopName()}:newitem`,'dirty')
     };
   return (
     <div className={isOpen!==false?styles.contain:styles.closeCart}>

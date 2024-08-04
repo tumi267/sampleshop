@@ -9,6 +9,7 @@
 .textContain{
     overflow: auto;
     align-items: start;
+    line-height: 1;
 }
 .imageContain{
     background-color: grey;
@@ -16,4 +17,7 @@
 .destext{
     margin-top: 0%;
     font-size: 5em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
 }
