@@ -1,7 +1,13 @@
 .contain{
 width: 300px;
 margin-bottom: 2em;
+padding: 2em;
+background: hsl(226.24deg 25.98% 93.88%);
+border: 1.7px solid hsla(0, 2%, 45%, 0.39);
+border-radius: 11%;
+
 }
+
 .imageContain{
     position: relative;
     height: 300px;
