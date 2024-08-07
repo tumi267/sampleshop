@@ -12,38 +12,38 @@ function ColectionCard({pic,currency,title,handle,where,param,tags,variants}) {
   const [variantSelected,setVariantSeleted]=useState(options.availableVariants?.node)
   const {product,id,image,price,selectedOptions}=variantSelected;
   
-  const x=useMotionValue(0);
-  const y=useMotionValue(0)
+  // const x=useMotionValue(0);
+  // const y=useMotionValue(0)
 
-  const mouseXspring=useSpring(x)
-  const mouseYspring=useSpring(y)
+  // const mouseXspring=useSpring(x)
+  // const mouseYspring=useSpring(y)
 
-  const rotateX=useTransform(mouseYspring,[0.5,-0.5],["5.5deg","-5.5deg"])
-  const rotateY=useTransform(mouseXspring,[0.5,-0.5],["-5.5deg","5.5deg"])
+  // const rotateX=useTransform(mouseYspring,[0.5,-0.5],["-5.5deg","5.5deg"])
+  // const rotateY=useTransform(mouseXspring,[0.5,-0.5],["5.5deg","-5.5deg"])
 
-  const handlemousemove=(e)=>{
-    const rect = e.target.getBoundingClientRect();
-    const width=rect.width
-    const height=rect.height
-    const mouseX=e.clientX-rect.left
-    const mouseY=e.clientY-rect.top
-    const Xper=mouseX/width-0.5
-    const Yper=mouseY/height-0.5
+  // const handlemousemove=(e)=>{
+  //   const rect = e.target.getBoundingClientRect();
+  //   const width=rect.width
+  //   const height=rect.height
+  //   const mouseX=e.clientX-rect.left
+  //   const mouseY=e.clientY-rect.top
+  //   const Xper=mouseX/width-0.5
+  //   const Yper=mouseY/height-0.5
     
-    x.set(Xper)
-    y.set(Yper)
-  }
+  //   x.set(Xper)
+  //   y.set(Yper)
+  // }
 
   return (
-    <motion.div
+    <div
     style={{
-      rotateX: rotateX,
-      rotateY: rotateY,
+      // rotateX: rotateX,
+      // rotateY: rotateY,
       transformStyle: "preserve-3d",
     }}
-    onMouseMove={(handlemousemove)}
-    onMouseLeave={()=>{x.set(0)
-    y.set(0)}}
+    // onMouseMove={(handlemousemove)}
+    // onMouseLeave={()=>{x.set(0)
+    // y.set(0)}}
     className={styles.contain}
     >
       <div            
@@ -66,6 +66,7 @@ function ColectionCard({pic,currency,title,handle,where,param,tags,variants}) {
         </Link>
         {param!==0&&<div className={styles.btn}>
           <div>
+          <div>
         {options?.keys.map((e,i) => {
             return<div key={i}>
               {e!=='Title'&&<><h3>{e}</h3>
@@ -85,9 +86,10 @@ function ColectionCard({pic,currency,title,handle,where,param,tags,variants}) {
          tags={tags}
          id={id}
         />
+        </div>
         </div>}
         </div>
-    </motion.div>
+    </div>
   )
 }
 
