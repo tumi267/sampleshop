@@ -6,9 +6,10 @@ import ZoomParellax from "./ZoomParellax/ZoomParellax"
 import ShopDescription from "./shopDescription/ShopDescription"
 
 async function Homeprod() {
-  const baseUrl = 'http://localhost:3000';
+  const dev = process.env.NODE_ENV !== 'production';
+  const baseurl = dev ? 'http://localhost:3000' : 'sampleshop.vercel.app';
 
-  const shopdata=await fetch(`${baseUrl}/api/getshopdata`, { cache: 'no-store' })
+  const shopdata=await fetch(`${baseurl}/api/getshopdata`, { cache: 'no-store' })
   const res=await shopdata.json()
 
   const productsData=await fetch(`${baseUrl}/api/getAllProducts`, { cache: 'no-store' })

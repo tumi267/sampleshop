@@ -3,8 +3,9 @@ import { getproductdata } from '@/app/lib/shopify'
 import ProductPageCard from '@/app/components/ProductPageCard/ProductPageCard'
 async function page({params}) {
     const handle=params.id
-    const baseUrl = 'http://localhost:3000';
-    const data= await fetch(`${baseUrl}/api/getproductdata`,{
+    const dev = process.env.NODE_ENV !== 'production';
+    const baseurl = dev ? 'http://localhost:3000' : 'https://sampleshop.vercel.app';
+    const data= await fetch(`${baseurl}/api/getproductdata`,{
       method:'POST',
       headers:{  'Content-Type': 'application/json'
     },

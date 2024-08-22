@@ -2,8 +2,9 @@ import ColectionCard from "../components/conlectionCard/ColectionCard"
 
 import styles from './collection.module.css'
 async function page() {
-    const baseUrl = 'http://localhost:3000';
-    const collectioData=await fetch(`${baseUrl}/api/getCollections`, { cache: 'no-store' })
+    const dev = process.env.NODE_ENV !== 'production';
+    const baseurl = dev ? 'http://localhost:3000' : 'https://sampleshop.vercel.app';
+    const collectioData=await fetch(`${baseurl}/api/getCollections`, { cache: 'no-store' })
     const collections=await collectioData.json() 
     const list=collections.msg.edges
     const dumie={edges:[{node:{
