@@ -1,12 +1,28 @@
 import ColectionCard from "../components/conlectionCard/ColectionCard"
-
+import { shopify } from "../lib/shopify"
 import styles from './collection.module.css'
+
 async function page() {
-    const dev = process.env.NODE_ENV !== 'production';
-    const baseurl = dev ? 'http://localhost:3000' : 'https://sampleshop.vercel.app';
-    const collectioData=await fetch(`${baseurl}/api/getCollections`, { cache: 'no-store' })
-    const collections=await collectioData.json() 
-    const list=collections.msg.edges
+  const collectioData=await shopify({
+    query:`{
+        collections(first: 100) {
+          edges {
+            node {
+              id
+              title
+              description
+              handle
+              image {
+                src
+                altText
+              }
+            }
+          }
+        }
+      }`
+  })
+    const list= collectioData.body.data?.collections.edges
+   
     const dumie={edges:[{node:{
       selectedOptions:[],
       product:{

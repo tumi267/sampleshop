@@ -1,15 +1,71 @@
 import ColectionCard from "../components/conlectionCard/ColectionCard"
-import { getAllProducts } from "../lib/shopify"
+import { shopify } from "../lib/shopify"
 import styles from './product.module.css'
+
 async function page() {
     
-    const dev = process.env.NODE_ENV !== 'production';
-    const baseurl = dev ? 'http://localhost:3000' : 'https://sampleshop.vercel.app';
-    const data= await fetch(`${baseurl}/api/getAllProducts`, {
-      cache:'no-store' 
+  const productsData= await shopify({
+    query: `{
+        products(sortKey: TITLE, first: 100) {
+          edges{
+            node {
+              id
+              title
+              tags
+              handle
+              availableForSale
+              description
+              priceRange {
+                  minVariantPrice {
+                    amount
+                    currencyCode
+                  }
+              }
+              variants(first: 200) {
+                edges {
+                  node {
+                    id
+                    price {
+                      amount
+                      currencyCode
+                    }
+                    selectedOptions {
+                      name
+                      value
+                    }
+                    product {
+                      availableForSale
+                      totalInventory
+                      tags
+                      title
+                      images(first: 10) {
+                        nodes {
+                          src
+                        }
+                      }
+                    }
+                    image {
+                      src
+                    }
+                  }
+                }
+              }
+              availableForSale
+              images(first: 1) {
+                  edges {
+                    node {
+                      src
+                      altText
+                    }
+                  }
+              }
+            }
+          }
+        }
+      }`
     });
-    const res=await data.json()
-    const list=res.msg?.products.edges
+    const list=productsData.body.data.products?.edges
+    
   return (
     <div className={styles.pageContain}>
         <h1>Products</h1>

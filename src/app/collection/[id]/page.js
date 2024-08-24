@@ -1,20 +1,74 @@
 import ColectionCard from "@/app/components/conlectionCard/ColectionCard"
-import { getCollectiondata } from "@/app/lib/shopify"
+import { getCollectiondata, shopify } from "@/app/lib/shopify"
 import styles from '../collection.module.css'
+
+
 async function page({ params }) {
     const handle=params.id
-    const dev = process.env.NODE_ENV !== 'production';
-    const baseurl = dev ? 'http://localhost:3000' : 'sampleshop.vercel.app';
-    const data= await fetch(`${baseurl}/api/getCollectiondata`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({handle:handle}) ,
-      cache: 'no-store' 
-    });
-    const res=await data.json()
-    const {title,products,description}=res.msg
+    const data=await shopify({
+      query:`{
+        collection(handle: "${handle}") {
+          description
+          title
+          products(first: 200) {
+            edges {
+              
+              node {
+                variants(first: 200) {
+                  edges {
+                    node {
+                      id
+                      price {
+                        amount
+                        currencyCode
+                      }
+                      selectedOptions {
+                        name
+                        value
+                      }
+                      product {
+                        availableForSale
+                        totalInventory
+                        tags
+                        title
+                        images(first: 10) {
+                          nodes {
+                            src
+                          }
+                        }
+                      }
+                      image {
+                        src
+                      }
+                    }
+                  }
+                }
+                availableForSale
+                priceRange {
+                  minVariantPrice {
+                    amount
+                    currencyCode
+                  }
+                }
+                images(first: 1) {
+                  edges {
+                    node {
+                      id
+                      src
+                    }
+                  }
+                }
+                title
+                tags
+                handle
+              }
+            }
+          }
+        }
+      }`
+    })
+    console.log()
+    const {title,products,description}=data.body.data.collection
     const productData=products.edges
    
     // get variants set id to variants.id
