@@ -20,7 +20,8 @@ function CartItemsCard({ data }) {
   // Initialize state for quantity
   const [qtyAmount, setQtyAmount] = useState(quantity);
   // base url
-  const baseUrl = 'http://localhost:3000';
+  const dev = process.env.NODE_ENV !== 'production';
+  const baseUrl = dev ? 'http://localhost:3000' : 'https://sampleshop.vercel.app/';
   // Function to update quantity based on action type
   const updateQty = async (input) => {
     switch (input) {
