@@ -10,11 +10,10 @@ function AddToCart({id}) {
       return res?.msg?.name
     }
     const updateCart=async()=>{
-     
       const data= await fetch(`/api/addLineItem`,{
         method:'POST',
         headers:{
-          'Content-Type':'applicaton/json'
+          'Content-Type':'application/json'
         },
         body:JSON.stringify({checkoutId:await cart,variant:id,quantity:1}),
         cache:'no-store'

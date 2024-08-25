@@ -6,44 +6,15 @@ import AddToCart from "../AddToCart/AddToCart"
 import { useRef, useState } from "react"
 import { handleseletor, variantselect } from "@/app/lib/variants"
 import { useSpring,useTransform,motion, useMotionValue } from "framer-motion"
+import { useCart } from "@/app/context/context"
 function ColectionCard({pic,currency,title,handle,where,param,tags,variants}) {
-
+  const { setIsOpen } = useCart();
   const options=variantselect(variants)
   const [variantSelected,setVariantSeleted]=useState(options.availableVariants?.node)
   const {product,id,image,price,selectedOptions}=variantSelected;
-  
-  // const x=useMotionValue(0);
-  // const y=useMotionValue(0)
-
-  // const mouseXspring=useSpring(x)
-  // const mouseYspring=useSpring(y)
-
-  // const rotateX=useTransform(mouseYspring,[0.5,-0.5],["-5.5deg","5.5deg"])
-  // const rotateY=useTransform(mouseXspring,[0.5,-0.5],["5.5deg","-5.5deg"])
-
-  // const handlemousemove=(e)=>{
-  //   const rect = e.target.getBoundingClientRect();
-  //   const width=rect.width
-  //   const height=rect.height
-  //   const mouseX=e.clientX-rect.left
-  //   const mouseY=e.clientY-rect.top
-  //   const Xper=mouseX/width-0.5
-  //   const Yper=mouseY/height-0.5
-    
-  //   x.set(Xper)
-  //   y.set(Yper)
-  // }
 
   return (
     <div
-    style={{
-      // rotateX: rotateX,
-      // rotateY: rotateY,
-      transformStyle: "preserve-3d",
-    }}
-    // onMouseMove={(handlemousemove)}
-    // onMouseLeave={()=>{x.set(0)
-    // y.set(0)}}
     className={styles.contain}
     >
       <div            
@@ -52,7 +23,9 @@ function ColectionCard({pic,currency,title,handle,where,param,tags,variants}) {
         transformStyle: "preserve-3d",
           }}>
         <Link 
-        href={`/${where}/${handle}`}>
+        href={`/${where}/${handle}`}
+        onClick={()=>{setIsOpen(false)}}
+        >
         <div className={styles.imageContain}>
         <Image src={pic} 
         alt={title} 

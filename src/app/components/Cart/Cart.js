@@ -11,6 +11,7 @@ function Cart() {
     const [lineItems,setLineItems]=useState([])
     const [relatedProducts,setRelatedProducts]=useState([])
     const dev = process.env.NODE_ENV !== 'production';
+    
     const baseUrl = dev ? 'http://localhost:3000' : 'https://sampleshop.vercel.app';
     const [cost,setcost]=useState({
       totalTaxAmount:{amount:0},
@@ -81,6 +82,7 @@ function Cart() {
               price={e?.node?.priceRange?.minVariantPrice?.amount}
               handle={e?.node?.handle}
               tags={e?.node?.tags}
+              where={'product'}
               variants={e.node.variants}
               />
             })}          
