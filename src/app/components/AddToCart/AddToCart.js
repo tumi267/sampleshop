@@ -10,7 +10,11 @@ function AddToCart({id}) {
       return res?.msg?.name
     }
     const updateCart=async()=>{
-      const data= await fetch(`/api/addLineItem`,{
+      const dev = process.env.NODE_ENV !== 'production';
+    
+      const baseUrl = dev ? 'http://localhost:3000' : 'https://sampleshop.vercel.app';
+    
+      const data= await fetch(`${baseUrl}/api/addLineItem`,{
         method:'POST',
         headers:{
           'Content-Type':'application/json'
@@ -19,7 +23,6 @@ function AddToCart({id}) {
         cache:'no-store'
       })
     window.localStorage.setItem(`${await shopName()}:newitem`,'dirty')
- 
     if(data.status==200){
       setIsOpen(true)
     }

@@ -72,3 +72,10 @@
   width: 25vw;
   height: 25vh;
 }
+@media (max-width: 767px) {
+  /* Styles for mobile devices */
+  .container {
+    height: 100vh;
+    width: 100%;
+  }
+}

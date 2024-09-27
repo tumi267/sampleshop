@@ -3,3 +3,10 @@
     margin-left: 2%;
     color: rgb(29, 29, 29);
 }
+@media (max-width:767px){
+    .slogan{
+        display: flex;
+        font-size: 3em;
+        justify-content: center;
+    }
+}

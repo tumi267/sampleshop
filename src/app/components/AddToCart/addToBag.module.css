@@ -17,3 +17,12 @@
 .btn:hover{
     opacity: .8;
 }
+
+@media (max-width:767px){
+    .btn{
+        font-size: 11px;
+        width: 80px;
+        height: 20px;
+
+    }
+}

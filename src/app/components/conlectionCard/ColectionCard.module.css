@@ -39,3 +39,14 @@ border-radius: 11%;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+@media (max-width: 767px) {
+    /* Styles for mobile devices */
+    .contain{
+        width: 50px;        
+        }
+    .imageContain,
+    .imageContain:hover{
+        height: 100px;
+        width: 50px;
+    }
+  }

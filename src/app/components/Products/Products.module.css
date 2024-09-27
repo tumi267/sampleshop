@@ -26,3 +26,8 @@
     position: relative;
     perspective: 1000px;
 }
+@media (max-width: 767px){
+    .contain{
+        margin: 0px 0%
+    }
+}

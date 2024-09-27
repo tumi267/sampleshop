@@ -65,7 +65,7 @@ async function page() {
       }`
     });
     const list=productsData.body.data.products?.edges
-    
+   
   return (
     <div className={styles.pageContain}>
         <h1>Products</h1>

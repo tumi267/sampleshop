@@ -67,7 +67,7 @@ async function page({ params }) {
         }
       }`
     })
-    console.log()
+    
     const {title,products,description}=data.body.data.collection
     const productData=products.edges
    

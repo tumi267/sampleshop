@@ -24,7 +24,7 @@ export function variantselect(variants){
 
     // // handles click selection update
     export function handleseletor(setVariantSeleted,selectedOptions,value,key,variants){
-       
+      
       const newOptions=selectedOptions.map(e=>e.name==key?{...e,value}:e)
       
     // Define a function to check if the variant's selectedOptions match newOptions

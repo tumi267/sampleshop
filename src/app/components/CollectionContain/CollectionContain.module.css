@@ -20,3 +20,18 @@
     font-size: larger;
     font-weight:700;
 }
+@media (max-width: 767px) {
+    /* Styles for mobile devices */
+    .imageContain{
+        position: relative;
+        height: 400px;
+        width: 400px;
+    }
+    .contain{
+        display: flex;
+        justify-content: center;       
+    }
+    .cardContain{
+    grid-template-columns: repeat(1, 1fr);    
+    }
+  }

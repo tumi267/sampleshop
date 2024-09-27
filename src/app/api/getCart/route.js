@@ -5,7 +5,7 @@ export async function POST(request)  {
     const data=await shopify({
         query:`{
           cart(
-            id: "${checkoutId}"
+            id: "gid://shopify/Cart/Z2NwLWV1cm9wZS13ZXN0MTowMUo0RjBWQ1I5NUExM0IwVlo4QlcyUDRBNA?key=10cbcae91f2be261b7d6f7eedaf44d4b"
           ) {
             id
             checkoutUrl
@@ -65,5 +65,6 @@ export async function POST(request)  {
           }
         }`
       })
+      
     return NextResponse.json({msg:data.body.data.cart},{status:200})
 }

@@ -6,15 +6,15 @@ import AddToCart from "../AddToCart/AddToCart"
 import { useRef, useState } from "react"
 import { handleseletor, variantselect } from "@/app/lib/variants"
 import { useSpring,useTransform,motion, useMotionValue } from "framer-motion"
-import { useCart } from "@/app/context/context"
 function ColectionCard({pic,currency,title,handle,where,param,tags,variants}) {
-  const { setIsOpen } = useCart();
+
   const options=variantselect(variants)
   const [variantSelected,setVariantSeleted]=useState(options.availableVariants?.node)
   const {product,id,image,price,selectedOptions}=variantSelected;
 
   return (
     <div
+
     className={styles.contain}
     >
       <div            
@@ -23,9 +23,7 @@ function ColectionCard({pic,currency,title,handle,where,param,tags,variants}) {
         transformStyle: "preserve-3d",
           }}>
         <Link 
-        href={`/${where}/${handle}`}
-        onClick={()=>{setIsOpen(false)}}
-        >
+        href={`/${where}/${handle}`}>
         <div className={styles.imageContain}>
         <Image src={pic} 
         alt={title} 
@@ -45,6 +43,7 @@ function ColectionCard({pic,currency,title,handle,where,param,tags,variants}) {
               {e!=='Title'&&<><h3>{e}</h3>
               <div className={styles.selector}>
               {options.flattened[e].map((j,y)=>{
+               
                return <div key={y} onClick={()=>{handleseletor(setVariantSeleted,selectedOptions,j,e,variants)}}>{j}</div>
               })}
               </div></>}

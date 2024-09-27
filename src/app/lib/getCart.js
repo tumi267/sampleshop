@@ -13,7 +13,10 @@ export const loadCart = async (cart,setCartItems) => {
         body:JSON.stringify({checkoutId:cart}),
         cache:'no-store'
       })
+      
+
       const cartdata=await data.json()
+      
       if (cartdata.msg) {
             setCartItems(cartdata.msg)
       }

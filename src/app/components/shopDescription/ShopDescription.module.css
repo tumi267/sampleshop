@@ -21,3 +21,19 @@
     flex-wrap: wrap;
     gap: 0.3em;
 }
+
+@media (max-width: 767px) {
+    /* Styles for mobile devices */
+    .destext{
+        font-size: 2em;
+        
+    }
+    .textContain{
+        width: 180px;
+    }
+    .textContain,
+    .imageContain{
+    height: 250px;
+    }
+  }
+  

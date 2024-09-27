@@ -57,7 +57,8 @@ function Nav() {
       const name=await shopName()
       localStorage.setItem(`${name}`, cartCreate?.cart.id);
       setCart(cartCreate?.cart.id);
-      
+      // Set new item status after creating the cart
+      window.localStorage.setItem(`${name}:newitem`, 'dirty');
     } catch (error) {
       console.error('Error creating cart:', error);
     }
